@@ -1,7 +1,7 @@
 FROM alpine:3.5
 MAINTAINER Hoa Duong <duongxuanhoa@gmail.com>
 
-RUN apk add --update --no-cache g++ make python tmux curl nodejs bash git py-pip python-dev \
+RUN apk add --update --no-cache g++ make python tmux curl nodejs bash openssh-client git py-pip python-dev \
  && rm -rf /var/cache/apk/*
 
 RUN git clone -b master --single-branch git://github.com/c9/core.git /opt/cloud9 \
