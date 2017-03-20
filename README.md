@@ -1,7 +1,6 @@
 ## Supported tags
-- latest (584 MB - 200 MB compressed)
-- slim (203 MB - 67 MB compressed)
-- alpine (584 MB - 200 MB compressed)
+- latest, alpine (584 MB - 198 MB compressed)
+- slim (203 MB - 66 MB compressed)
 
 ## What is Cloud9 IDE?
 Cloud9 IDE is an online integrated development environment, published as open source from version 3.0. It supports hundreds of programming languages, including C, C++, PHP, Ruby, Perl, Python, JavaScript with Node.js, and Go. It enables developers to get started with coding immediately with pre-configured workspaces, collaborate with their peers with collaborative coding features, and web development features like live preview and browser compatibility testing.
