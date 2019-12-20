@@ -1,6 +1,6 @@
 ## Supported tags
-- latest, alpine (584 MB - 198 MB compressed)
-- slim (203 MB - 66 MB compressed)
+- latest, alpine (701MB ~ 198MB compressed)
+- slim (201MB ~ 66MB compressed)
 
 ## What is Cloud9 IDE?
 Cloud9 IDE is an online integrated development environment, published as open source from version 3.0. It supports hundreds of programming languages, including C, C++, PHP, Ruby, Perl, Python, JavaScript with Node.js, and Go. It enables developers to get started with coding immediately with pre-configured workspaces, collaborate with their peers with collaborative coding features, and web development features like live preview and browser compatibility testing.
@@ -34,3 +34,5 @@ This variable is mandatory and specifies the user that will be set for Cloud9 HT
 - PASSWORD
 This variable is mandatory and specifies the password that will be set for Cloud9 HTTP Authentication
 
+## Standalone mode
+Unset USERNAME and PASSWORD or set value to blank in order to enable standalone mode
