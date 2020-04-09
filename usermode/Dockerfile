@@ -19,8 +19,8 @@ RUN apk add --update --no-cache g++ make python tmux curl bash git --repository 
  
  
 FROM alpine:3.11
-ARG USERID=5353
-ARG GROUPID=5353
+ARG USERID=501
+ARG GROUPID=501
 
 RUN addgroup -g $GROUPID c9 \
  && adduser -G c9 c9 -u $USERID -s /bin/sh -D c9;
@@ -40,7 +40,12 @@ EXPOSE 8000
 
 ENV USERNAME ""
 ENV PASSWORD ""
+ENV USER "c9"
+ENV USERID "5000"
+ENV GROUPID "5000"
 ENV SHELL /bin/bash
-USER c9
 
-ENTRYPOINT ["sh", "-c", "/usr/bin/node /home/c9/.c9/server.js -l 0.0.0.0 -p 8000 -w /workspace -a $USERNAME:$PASSWORD"]
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["docker-entrypoint.sh"]
