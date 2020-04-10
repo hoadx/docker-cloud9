@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-if test $CHANGE_OWNER -gt 0
+if [ \("$USER_ID" > 0\) -o \("$GROUP_ID" > 0\) ]
 then                  
         ORIGPASSWD=$(cat /etc/passwd | grep c9)
         ORIG_UID=$(echo $ORIGPASSWD | cut -f3 -d:)
@@ -12,7 +12,10 @@ then
                 sed -i -e "s/c9:x:$ORIG_GID:/c9:x:$GROUP_ID:/" /etc/group          
                 ORIG_HOME=$(echo $ORIGPASSWD | cut -f6 -d:)                
                 chown -R c9:c9 ${ORIG_HOME}
-                chown -R c9:c9 /workspace
+                if test $CHANGE_OWNER -gt 0
+                then 
+                        chown -R c9:c9 /workspace
+                fi
         fi                                                  
 fi
 

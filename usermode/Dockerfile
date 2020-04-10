@@ -19,31 +19,29 @@ RUN apk add --update --no-cache g++ make python tmux curl bash git --repository 
  
  
 FROM alpine:3.11
-ARG USERID=501
-ARG GROUPID=501
-
-RUN addgroup -g $GROUPID c9 \
- && adduser -G c9 c9 -u $USERID -s /bin/sh -D c9;
-RUN chmod g+rw /home
-RUN apk add --update --no-cache python tmux curl bash git --repository http://dl-cdn.alpinelinux.org/alpine/v3.7/main/ nodejs=8.9.3-r1 \
- && rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
-ENV HOME /home/c9
-WORKDIR /home/c9
-COPY --from=0 --chown=c9:c9 /root/.c9 /home/c9/.c9
- 
-RUN mkdir /workspace
-VOLUME /workspace
-WORKDIR /workspace
-RUN chown -R c9:c9 /workspace
-
-EXPOSE 8000
-
 ENV USERNAME ""
 ENV PASSWORD ""
 ENV USER "c9"
 ENV USERID "5000"
+ENV GROUP "c9"
 ENV GROUPID "5000"
 ENV SHELL /bin/bash
+
+RUN addgroup -g $GROUPID $USER \
+ && adduser -G $USER $GROUP -u $USERID -s /bin/sh -D $USER;
+RUN chmod g+rw /home
+RUN apk add --update --no-cache python tmux curl bash git --repository http://dl-cdn.alpinelinux.org/alpine/v3.7/main/ nodejs=8.9.3-r1 \
+ && rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
+ENV HOME /home/$USER
+WORKDIR /home/$USER
+COPY --from=0 --chown=$USER:$GROUP /root/.c9 /home/$USER/.c9
+ 
+RUN mkdir /workspace
+VOLUME /workspace
+WORKDIR /workspace
+RUN chown -R $USER:$GROUP /workspace
+
+EXPOSE 8000
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh

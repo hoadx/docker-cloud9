@@ -1,0 +1,24 @@
+version: '3.7'
+services:
+  cloud9:
+    container_name: c9
+    image: hoadx/cloud9:usermode   # supported tag name: latest, alpine, slim, usermode
+    init: true
+    ports:
+      - "8000:8000"        # bind port 8000
+    environment:
+      - USERNAME=          # Access authentication user
+      - PASSWORD=          # Access authentication password
+      - CHANGE_OWNER=1     # Set the value to 1 to change ownership of workspace folder
+      - USER_ID=5000       # set user id for workspace folder
+      - GROUP_ID=5000      # set group id for workspace folder
+    volumes:
+      - .:/workspace       # workspace path
+    healthcheck:
+      test: ["CMD", "curl", "-f", "localhost:8000"]
+      interval: 60s
+      timeout: 3s
+      retries: 3
+      start_period: 15s
+    networks:
+      - default

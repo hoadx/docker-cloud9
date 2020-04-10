@@ -54,8 +54,8 @@ A docker-compose.yml file for usermode:
       environment:
         - USERNAME=username  # Access authentication user
         - PASSWORD=password  # Access authentication password
-        - CHANGE_OWNER=0     # Set the value to 1 to change ownership on create
-        - USER_ID=501        # set user id; only use if CHANGE_OWNER=1
-        - GROUP_ID=80        # set group id; only use if CHANGE_OWNER=1
+        - CHANGE_OWNER=0     # Set the value to 1 to change ownership of workspace folder
+        - USER_ID=5000       # set user id for workspace folder
+        - GROUP_ID=5000      # set group id for workspace folder
       volumes:
         - .:/workspace       # set workspace directory
