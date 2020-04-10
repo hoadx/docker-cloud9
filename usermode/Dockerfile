@@ -34,7 +34,7 @@ RUN apk add --update --no-cache python tmux curl bash git --repository http://dl
  && rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
 ENV HOME /home/$USER
 WORKDIR /home/$USER
-COPY --from=0 --chown=$USER:$GROUP /root/.c9 /home/$USER/.c9
+COPY --from=0 --chown=c9:c9 /root/.c9 /home/c9/.c9
  
 RUN mkdir /workspace
 VOLUME /workspace
