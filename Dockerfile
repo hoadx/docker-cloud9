@@ -1,6 +1,6 @@
 FROM alpine:3.11
 
-MAINTAINER Hoa Duong <duongxuanhoa@gmail.com>
+LABEL maintainer="duongxuanhoa@gmail.com"
 
 RUN apk add --update --no-cache g++ make python tmux curl bash openssh-client git py-pip python-dev --repository http://dl-cdn.alpinelinux.org/alpine/v3.7/main/ nodejs=8.9.3-r1 \
  && rm -rf /var/cache/apk/*
@@ -15,7 +15,7 @@ RUN git clone -b master --single-branch https://github.com/c9/core.git /root/.c9
  && npm i https://github.com/c9/nak/tarball/c9 \
  && echo 1 > ./installed \
  && NO_PULL=1 ./scripts/install-sdk.sh \
- && git reset --hard && rm -rf /root/.c9/.git /var/cache/apk/* /tmp/* /var/tmp/* \
+ && git reset --hard && rm -rf /root/.c9/.git/objects/pack/* /var/cache/apk/* /tmp/* /var/tmp/* \
  && npm cache clean --force
 
 RUN pip install -U pip \

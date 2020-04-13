@@ -10,8 +10,8 @@ services:
       - USERNAME=          # Access authentication user
       - PASSWORD=          # Access authentication password
       - CHANGE_OWNER=1     # Set the value to 1 to change ownership of workspace folder
-      - USER_ID=5000       # set user id for workspace folder
-      - GROUP_ID=5000      # set group id for workspace folder
+      - USERID=5000        # set user id for workspace folder; e.g USERID=${USERID:-id -u}
+      - GROUPID=5000       # set group id for workspace folder; e.g GROUPID=${GROUPID:-id -g}
     volumes:
       - .:/workspace       # workspace path
     healthcheck:

@@ -1,7 +1,5 @@
 FROM alpine:3.11
 
-MAINTAINER Hoa Duong <duongxuanhoa@gmail.com>
-
 RUN apk add --update --no-cache g++ make python tmux curl bash git --repository http://dl-cdn.alpinelinux.org/alpine/v3.7/main/ nodejs=8.9.3-r1 \
  && git clone -b master --single-branch https://github.com/c9/core.git /root/.c9 && cd /root/.c9 \
  && mkdir -p ./node/bin ./bin ./node_modules \		
@@ -14,11 +12,14 @@ RUN apk add --update --no-cache g++ make python tmux curl bash git --repository 
  && echo 1 > ./installed \
  && NO_PULL=1 ./scripts/install-sdk.sh \
  && apk del g++ make \
- && git reset --hard && rm -rf /root/.c9/.git /var/cache/apk/* /tmp/* /var/tmp/* \
+ && git reset --hard && rm -rf /root/.c9/.git/objects/pack/* /var/cache/apk/* /tmp/* /var/tmp/* \
  && npm cache clean --force
  
  
 FROM alpine:3.11
+
+LABEL maintainer="duongxuanhoa@gmail.com"
+
 ENV USERNAME ""
 ENV PASSWORD ""
 ENV USER "c9"

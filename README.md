@@ -55,7 +55,7 @@ A docker-compose.yml file for usermode:
         - USERNAME=username  # Access authentication user
         - PASSWORD=password  # Access authentication password
         - CHANGE_OWNER=0     # Set the value to 1 to change ownership of workspace folder
-        - USER_ID=5000       # set user id for workspace folder
-        - GROUP_ID=5000      # set group id for workspace folder
+        - USERID=5000        # set user id; ${USERID:-id -u}
+        - GROUPID=5000       # set group id; ${GROUPID:-id -u}
       volumes:
         - .:/workspace       # set workspace directory
